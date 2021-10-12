@@ -1,11 +1,24 @@
 {
   "name": "battleship",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YiannisRoss/js-battleship.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/YiannisRoss/js-battleship/issues"
+  },
+  "homepage": "https://github.com/YiannisRoss/js-battleship#readme",
+  "description": "",
+  "devDependencies": {
+    "webpack": "^5.58.1",
+    "webpack-cli": "^4.9.0"
+  }
 }
