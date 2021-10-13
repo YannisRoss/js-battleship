@@ -13,13 +13,5 @@ describe('Ship fully functional', () => {
 
 
 
-    let positions = []
-      while (i < size) {
-        positions.push('intact')
-        i++
-      }
-    let isHit = false;
-    let isSunk = false;
-
-    let hit = (position) => console.log('ship hit');
+  
 })

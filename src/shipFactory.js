@@ -1,12 +1,12 @@
-export let shipFactory;
 
 
-shipFactory = (size) => {
+let shipFactory = (size) => {
     console.log('shipFactory initialized')
  
 
-    let i = 0;
     let positions = []
+    let i = 0;
+
       while (i < size) {
         positions.push('intact')
         i++
@@ -20,3 +20,4 @@ shipFactory = (size) => {
   
 
   module.exports = shipFactory
+
