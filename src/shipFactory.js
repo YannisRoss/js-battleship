@@ -1,7 +1,6 @@
 
 
 let shipFactory = (size) => {
-    console.log('shipFactory initialized')
  
 
     let positions = []
@@ -14,7 +13,18 @@ let shipFactory = (size) => {
     let isHit = false;
     let isSunk = false;
 
-    let hit = (position) => console.log('ship hit');
+    function hit(position){
+        positions[position] = 'hit';
+        isHit = true
+        if (positions.every(e => e == 'hit')){
+            this.isSunk = true;
+        }
+    }
+
+  
+       
+        
+    
     return { positions, size, isHit, isSunk, hit };
   };
   
