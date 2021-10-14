@@ -15,7 +15,7 @@ let shipFactory = (size) => {
 
     function hit(position){
         positions[position] = 'hit';
-        isHit = true
+        this.isHit = true
         if (positions.every(e => e == 'hit')){
             this.isSunk = true;
         }
