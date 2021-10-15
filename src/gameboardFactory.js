@@ -6,17 +6,19 @@ let gameboardFactory = () => {
 
     let i = 0
     while (i < 50) {
-        let square = {
+        let topSquare = {
             isHit: false,
             ship: undefined,
             shipPart: undefined
         }
-        topsideSquaresArray.push(square)
-        square = {
+        topsideSquaresArray.push(topSquare)
+        let bottomSquare = {
             isHit: false,
-            ship: undefined
+            ship: undefined,
+            shipPart: undefined
+
         }
-        bottomsideSquaresArray.push(square)
+        bottomsideSquaresArray.push(bottomSquare)
         i++
     }
     
@@ -32,11 +34,35 @@ let gameboardFactory = () => {
                 i++
             }
         }
+
+        else {
+            let i = 0;
+
+            while (i<positions.length){
+                this.bottomsideSquaresArray[positions[i]].ship = ship
+                this.bottomsideSquaresArray[positions[i]].shipPart = i
+                i++
+            }
+        }
     }
 
-    return {topsideSquaresArray, bottomsideSquaresArray, addShip}
+    function receiveAttack(square, side) {
 
+        if (side == 'top') {
 
+            if (topsideSquaresArray[square].ship){
+            topsideSquaresArray[square].ship.hit(topsideSquaresArray[square].ship.shipPart)
+
+            }
+
+            else {
+                topsideSquaresArray[square].isHit = true
+            }
+        }
+
+    }
+
+    return {topsideSquaresArray, bottomsideSquaresArray, addShip, receiveAttack}
 
 }
 
