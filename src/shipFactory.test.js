@@ -13,7 +13,7 @@ describe('Ship fully functional', () => {
     it('gets hit', () => {
         let ship = shipFactory(5);
         ship.hit(4)
-        expect(ship.positions[4]).toBe('hit')
+        expect(ship.segments[4]).toBe('hit')
     })
     it('sinks', () => {
         let ship = shipFactory(5);

@@ -1,8 +1,8 @@
 
 
-let shipFactory = (size, positions) => {
+let shipFactory = (size) => {
  
-    let positions = positions
+    let positions = []
     let segments = []
     let i = 0;
 
@@ -25,7 +25,7 @@ let shipFactory = (size, positions) => {
        
         
     
-    return { positions, size, isHit, isSunk, hit };
+    return { segments, positions, size, isHit, isSunk, hit };
   };
   
 

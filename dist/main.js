@@ -1,1 +1,1 @@
-console.log("source index loaded");
+(()=>{var t={922:t=>{t.exports=t=>{let i=[],r=[],s=0;for(;s<t;)r.push(i[s]+"intact"),s++;return{positions:i,size:t,isHit:!1,isSunk:!1,hit:function(t){r[t]="hit",this.isHit=!0,r.every((t=>"hit"==t))&&(this.isSunk=!0)}}}}},i={};function r(s){var e=i[s];if(void 0!==e)return e.exports;var o=i[s]={exports:{}};return t[s](o,o.exports,r),o.exports}r(922),console.log("source index loaded")})();
