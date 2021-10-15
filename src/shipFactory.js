@@ -2,12 +2,11 @@
 
 let shipFactory = (size) => {
  
-    let positions = []
     let segments = []
     let i = 0;
 
       while (i < size) {
-        segments.push(positions[i]+'intact')
+        segments.push('intact')
         i++
       }
     let isHit = false;
@@ -25,7 +24,7 @@ let shipFactory = (size) => {
        
         
     
-    return { segments, positions, size, isHit, isSunk, hit };
+    return { segments, size, isHit, isSunk, hit };
   };
   
 

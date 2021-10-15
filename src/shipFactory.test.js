@@ -8,7 +8,7 @@ describe('Ship fully functional', () => {
     });
 
     it('starts off intact', () => {
-        expect(shipFactory(3).positions.every(e => e == 'intact'))
+        expect(shipFactory(3).segments.every(e => e == 'intact')).toBe(true)
     });
     it('gets hit', () => {
         let ship = shipFactory(5);

@@ -22,15 +22,15 @@ let gameboardFactory = () => {
         i++
     }
     
-    function addShip(ship, positions, side, vertical = false) {
-        
+    function addShip(ship, position, side, vertical = false) {
+
         if (side == 'top') {
 
             let i = 0;
-            while (i<positions.length){
+            while (i<ship.size){
 
-                this.topsideSquaresArray[positions[i]].ship = ship
-                this.topsideSquaresArray[positions[i]].shipPart = i
+                topsideSquaresArray[position + i].ship = ship
+                topsideSquaresArray[position +i].shipPart = i
                 i++
             }
         }
@@ -38,7 +38,7 @@ let gameboardFactory = () => {
         else {
             let i = 0;
 
-            while (i<positions.length){
+            while (i<positions.size){
                 this.bottomsideSquaresArray[positions[i]].ship = ship
                 this.bottomsideSquaresArray[positions[i]].shipPart = i
                 i++
@@ -51,7 +51,9 @@ let gameboardFactory = () => {
         if (side == 'top') {
 
             if (topsideSquaresArray[square].ship){
-            topsideSquaresArray[square].ship.hit(topsideSquaresArray[square].ship.shipPart)
+
+                topsideSquaresArray[square].ship.hit(topsideSquaresArray[square].shipPart)
+                topsideSquaresArray[square].isHit = true
 
             }
 
@@ -60,9 +62,71 @@ let gameboardFactory = () => {
             }
         }
 
+        else {
+            if (bottomsideSquaresArray[square].ship){
+
+                bottomsideSquaresArray[square].ship.hit(bottomsideSquaresArray[square].shipPart)
+                bottomsideSquaresArray[square].isHit = true
+
+            }
+
+            else {
+                bottomsideSquaresArray[square].isHit = true
+            }
+
+
+        }
+
     }
 
-    return {topsideSquaresArray, bottomsideSquaresArray, addShip, receiveAttack}
+    function onlyUnique(value, index, self) {
+        return self.indexOf(value) === index;
+      }
+
+
+    function checkRemainingShips(side) {
+
+        let shipsArray = []
+        if (side == 'top') {
+            let i = 0;
+            while (i<topsideSquaresArray.length){
+
+                if (typeof topsideSquaresArray[i].ship !== 'undefined' && !topsideSquaresArray[i].ship.isSunk){
+
+                    shipsArray.push(topsideSquaresArray[i].ship)
+                }
+
+                i++
+            }
+
+        }
+
+
+        else {
+            let i = 0;
+            while (i<bottomsideSquaresArray.length){
+
+                if (!bottomsideSquaresArray[i].ship.isSunk){
+
+                    shipsArray.push(bottomsideSquaresArray[i].ship)
+                }
+
+                i++
+            }
+
+      
+
+
+        }
+
+        if (shipsArray.length > 0) {        
+            shipsArray = shipsArray.filter(onlyUnique)
+            return shipsArray.length
+        }
+
+    }
+
+    return {topsideSquaresArray, bottomsideSquaresArray, addShip, receiveAttack, checkRemainingShips}
 
 }
 
