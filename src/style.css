@@ -66,3 +66,13 @@ h1 {
     background-color: rgb(145, 59, 43);
 
 }
+
+.struck-empty-square {
+
+    background-color: black;
+}
+
+.struck-ship {
+
+    background-color: red;
+}

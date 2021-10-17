@@ -25,6 +25,7 @@ topBoard.setAttribute('id','top-board')
         topSquareElement.addEventListener('click', function () {
 
             gameboard.receiveAttack(getSquareData(topSquareElement).squareNumber,getSquareData(topSquareElement).squareSide)
+            updateGrid()
 
         });
         topBoard.appendChild(topSquareElement)
@@ -41,8 +42,10 @@ bottomBoard.setAttribute('id','bottom-board')
         bottomSquareElement.setAttribute('class','bottom-square')
         bottomSquareElement.setAttribute('id',`bottom-square-${i}`)
         bottomSquareElement.addEventListener('click', function () {
-            
+
             gameboard.receiveAttack(getSquareData(bottomSquareElement).squareNumber,getSquareData(bottomSquareElement).squareSide)
+            updateGrid()
+
 
         });
         bottomBoard.appendChild(bottomSquareElement)
@@ -51,3 +54,41 @@ bottomBoard.setAttribute('id','bottom-board')
 
 container.appendChild(topBoard)
 container.appendChild(bottomBoard)
+
+
+
+
+
+
+function updateGrid() {
+
+    let i = 0;
+    while (i<gameboard.topsideSquaresArray.length) {
+
+        if (gameboard.topsideSquaresArray[i].ship !== undefined && gameboard.topsideSquaresArray[i].isHit) {
+            document.getElementById(`top-square-${i}`).classList.add('struck-ship')
+
+        }
+        else if ((gameboard.topsideSquaresArray[i].ship == undefined && gameboard.topsideSquaresArray[i].isHit)) {
+            document.getElementById(`top-square-${i}`).classList.add('struck-empty-square')
+
+        }
+        i++
+    }
+
+    i = 0;
+    while (i<gameboard.bottomsideSquaresArray.length) {
+
+        if (gameboard.bottomsideSquaresArray[i].ship !== undefined && gameboard.bottomsideSquaresArray[i].isHit) {
+            document.getElementById(`bottom-square-${i}`).classList.add('struck-ship')
+
+        }
+        else if ((gameboard.bottomsideSquaresArray[i].ship == undefined && gameboard.bottomsideSquaresArray[i].isHit)) {
+            document.getElementById(`bottom-square-${i}`).classList.add('struck-empty-square')
+
+        }
+        i++
+    }
+
+
+}

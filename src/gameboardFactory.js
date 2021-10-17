@@ -78,6 +78,7 @@ let gameboardFactory = () => {
 
         }
 
+        
     }
 
     function onlyUnique(value, index, self) {
