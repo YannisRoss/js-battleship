@@ -12,6 +12,7 @@ let gameboardFactory = () => {
             shipPart: undefined
         }
         topsideSquaresArray.push(topSquare)
+        
         let bottomSquare = {
             isHit: false,
             ship: undefined,
