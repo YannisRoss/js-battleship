@@ -14,7 +14,6 @@ body {
 }
 
 #container {
-    padding: 10vw;
     width: 100vw;
     height: 90vh;
     display: flex;

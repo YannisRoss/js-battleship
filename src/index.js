@@ -1,5 +1,6 @@
 import css from "./style.css";
 
+let getSquareData = require('./getSquareData.js')
 let shipFactory = require('./shipFactory.js')
 let playerFactory = require('./playerFactory.js')
 let gameboardFactory = require('./gameboardFactory.js')
@@ -20,6 +21,12 @@ topBoard.setAttribute('id','top-board')
 
         let topSquareElement = document.createElement('div');
         topSquareElement.setAttribute('class','top-square')
+        topSquareElement.setAttribute('id',`top-square-${i}`)
+        topSquareElement.addEventListener('click', function () {
+
+            gameboard.receiveAttack(getSquareData(topSquareElement).squareNumber,getSquareData(topSquareElement).squareSide)
+
+        });
         topBoard.appendChild(topSquareElement)
         i++
     }
@@ -32,6 +39,12 @@ bottomBoard.setAttribute('id','bottom-board')
 
         let bottomSquareElement = document.createElement('div');
         bottomSquareElement.setAttribute('class','bottom-square')
+        bottomSquareElement.setAttribute('id',`bottom-square-${i}`)
+        bottomSquareElement.addEventListener('click', function () {
+            
+            gameboard.receiveAttack(getSquareData(bottomSquareElement).squareNumber,getSquareData(bottomSquareElement).squareSide)
+
+        });
         bottomBoard.appendChild(bottomSquareElement)
         i++
     }

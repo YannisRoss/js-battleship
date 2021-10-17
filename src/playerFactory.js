@@ -8,3 +8,5 @@ let playerFactory = (name) => {
 
     return {name, isCurrentPlayer}
 }
+
+module.exports = playerFactory
