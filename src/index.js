@@ -25,6 +25,7 @@ topBoard.setAttribute('id','top-board')
     }
 
 let bottomBoard = document.createElement('div')
+bottomBoard.setAttribute('id','bottom-board')
 
     i = 0;
     while  (i <gameboard.bottomsideSquaresArray.length) {

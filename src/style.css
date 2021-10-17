@@ -14,8 +14,8 @@ body {
 }
 
 #container {
-    
-    width: 90vw;
+    padding: 10vw;
+    width: 100vw;
     height: 90vh;
     display: flex;
     flex-direction: column;
@@ -27,7 +27,8 @@ h1 {
 }
 
 #top-board {
-    height: 30vh;
+    height: 35vh;
+    width: 35vh;
     display: grid;
     border: 4px solid goldenrod;
     grid-template-columns: repeat(10, 1fr) ;
@@ -41,6 +42,27 @@ h1 {
 }
 
 .top-square:hover {
+
+    background-color: rgb(145, 59, 43);
+
+}
+
+#bottom-board {
+    height: 35vh;
+    width: 35vh;
+    display: grid;
+    border: 4px solid goldenrod;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+}
+.bottom-square {
+    border: 1px solid sienna;
+    background-color: rgb(44, 80, 23);
+    width: 100%;
+    height: 100%;
+}
+
+.bottom-square:hover {
 
     background-color: rgb(145, 59, 43);
 
