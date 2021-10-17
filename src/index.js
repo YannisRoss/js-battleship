@@ -13,6 +13,7 @@ let container = document.getElementById('container')
 let gameboard = gameboardFactory()
 
 let topBoard = document.createElement('div')
+topBoard.setAttribute('id','top-board')
   
     let i = 0;
     while  (i <gameboard.topsideSquaresArray.length) {
@@ -29,7 +30,7 @@ let bottomBoard = document.createElement('div')
     while  (i <gameboard.bottomsideSquaresArray.length) {
 
         let bottomSquareElement = document.createElement('div');
-        bottomSquareElement.setAttribute('class','top-square')
+        bottomSquareElement.setAttribute('class','bottom-square')
         bottomBoard.appendChild(bottomSquareElement)
         i++
     }

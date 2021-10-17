@@ -12,3 +12,36 @@ body {
     background-color: teal;
 
 }
+
+#container {
+    
+    width: 90vw;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+h1 {
+
+    font-size: xx-large;
+    font-weight: bolder;
+}
+
+#top-board {
+    height: 30vh;
+    display: grid;
+    border: 4px solid goldenrod;
+    grid-template-columns: repeat(10, 1fr) ;
+    grid-template-rows: repeat(10, 1fr);
+}
+.top-square {
+    border: 1px solid sienna;
+    background-color: tomato;
+    width: 100%;
+    height: 100%;
+}
+
+.top-square:hover {
+
+    background-color: rgb(145, 59, 43);
+
+}
