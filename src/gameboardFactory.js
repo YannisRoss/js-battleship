@@ -5,7 +5,7 @@ let gameboardFactory = () => {
     let bottomsideSquaresArray = []
 
     let i = 0
-    while (i < 50) {
+    while (i < 100) {
         let topSquare = {
             isHit: false,
             ship: undefined,
