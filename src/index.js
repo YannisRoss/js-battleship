@@ -45,21 +45,19 @@ topBoard.setAttribute('id','top-board')
                     }
                     console.log('ships:' + shipsArray.length)
                     gameboard.addShip(shipsArray[0],getSquareData(topSquareElement).squareNumber,'top')
+                    shipsArray.shift()
 
                 }
-                else if (shipsArray !== undefined && shipsArray.length > 0) {
+                else {
 
 
                 gameboard.addShip(shipsArray[0],getSquareData(topSquareElement).squareNumber,'top')
                 shipsArray.shift()
                 console.log('ship added. ships to add: '+shipsArray.length )
-
+                    if (shipsArray.length == 0) { placingShips = false }
                 }
                 
-                else {
-                    placingShips = false
-                    console.log('placingShips ' +placingShips)
-                }
+
 
                 
             }
