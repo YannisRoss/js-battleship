@@ -63,8 +63,11 @@ topBoard.setAttribute('id','top-board')
 
                 
             }
+            else {
             gameboard.receiveAttack(getSquareData(topSquareElement).squareNumber,getSquareData(topSquareElement).squareSide)
             updateGrid()
+            }
+            
 
         });
         topBoard.appendChild(topSquareElement)
