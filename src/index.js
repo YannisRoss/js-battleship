@@ -34,6 +34,8 @@ topBoard.setAttribute('id','top-board')
         topSquareElement.addEventListener('click', function () {
             
             if (topPlacingShips) {
+
+
                 if (topShipsArray == undefined) {
                     let i = 5;
                     console.log('generating ships')
@@ -45,16 +47,31 @@ topBoard.setAttribute('id','top-board')
                         console.log(`ship pushed: ${topShipsArray[0]}`)
                     }
                     console.log('ships:' + topShipsArray.length)
-                    gameboard.addShip(topShipsArray[0],getSquareData(topSquareElement).squareNumber,'top')
-                    topShipsArray.shift()
+
+
+        
+                    if (gameboard.topsideSquaresArray[getSquareData(topSquareElement).squareNumber].ship == undefined){
+                        gameboard.addShip(topShipsArray[0],getSquareData(topSquareElement).squareNumber,'top')
+                        topShipsArray.shift()
+                        console.log('ship added. ships to add: '+topShipsArray.length )
+
+                    }
+                    else {alert('ships cannot overlap')}
+
+                    
+
 
                 }
                 else {
 
+                    if (gameboard.topsideSquaresArray[getSquareData(topSquareElement).squareNumber].ship == undefined){
+                        gameboard.addShip(topShipsArray[0],getSquareData(topSquareElement).squareNumber,'top')
+                        topShipsArray.shift()
+                        console.log('ship added. ships to add: '+topShipsArray.length )
 
-                gameboard.addShip(topShipsArray[0],getSquareData(topSquareElement).squareNumber,'top')
-                topShipsArray.shift()
-                console.log('ship added. ships to add: '+topShipsArray.length )
+                    }
+                    else {alert('ships cannot overlap')}
+
                     if (topShipsArray.length == 0) { topPlacingShips = false }
                 }
                 
@@ -96,16 +113,23 @@ bottomBoard.setAttribute('id','bottom-board')
                         console.log(`ship pushed: ${bottomShipsArray[0]}`)
                     }
                     console.log('ships:' + bottomShipsArray.length)
+
+                    
                     gameboard.addShip(bottomShipsArray[0],getSquareData(bottomSquareElement).squareNumber,'bottom')
                     bottomShipsArray.shift()
 
                 }
                 else {
 
+                    if (gameboard.bottomsideSquaresArray[getSquareData(bottomSquareElement).squareNumber].ship == undefined){
 
                 gameboard.addShip(bottomShipsArray[0],getSquareData(bottomSquareElement).squareNumber,'bottom')
                 bottomShipsArray.shift()
                 console.log('ship added. ships to add: '+bottomShipsArray.length )
+            }
+            else {alert('ships cannot overlap')}
+
+
                     if (bottomShipsArray.length == 0) { bottomPlacingShips = false }
                 }
                 
