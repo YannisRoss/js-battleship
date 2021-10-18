@@ -22,6 +22,7 @@ let gameboard = gameboardFactory()
 let topShipsArray = undefined
 let bottomShipsArray = undefined
 
+
 let topBoard = document.createElement('div')
 topBoard.setAttribute('id','top-board')
   
@@ -154,6 +155,12 @@ container.appendChild(bottomBoard)
 
 let topPlacingShips = true
 let bottomPlacingShips = true
+
+
+let moveAnnouncer = document.createElement('div')
+    moveAnnouncer.setAttribute('id','move-announcer')
+    moveAnnouncer.innerHTML = 'Place ships'
+    container.appendChild(moveAnnouncer)
 
 function newGame() {
     let topPlayer = playerFactory('CPU')
