@@ -25,11 +25,12 @@ let gameboardFactory = () => {
     
     function addShip(ship, position, side, vertical = false) {
 
+        position = parseInt(position)
         if (side == 'top') {
 
             let i = 0;
             while (i<ship.size){
-
+                console.log(`adding ship to square ${position+i}`)
                 topsideSquaresArray[position + i].ship = ship
                 topsideSquaresArray[position +i].shipPart = i
                 i++

@@ -10,8 +10,16 @@ console.log(`source index loaded`)
 
 let container = document.getElementById('container')
 
+let newGameButton = document.createElement('button')
+newGameButton.innerHTML = 'New Game'
+newGameButton.addEventListener('click', function () {
 
+    newGame()
+})
+
+container.appendChild(newGameButton)
 let gameboard = gameboardFactory()
+let shipsArray = undefined
 
 let topBoard = document.createElement('div')
 topBoard.setAttribute('id','top-board')
@@ -23,7 +31,38 @@ topBoard.setAttribute('id','top-board')
         topSquareElement.setAttribute('class','top-square')
         topSquareElement.setAttribute('id',`top-square-${i}`)
         topSquareElement.addEventListener('click', function () {
+            
+            if (placingShips) {
+                if (shipsArray == undefined) {
+                    let i = 5;
+                    console.log('generating ships')
+                    shipsArray = []
+                    while (i > 0) {
+                        
+                        shipsArray.push(shipFactory(i))
+                        i--
+                        console.log(`ship pushed: ${shipsArray[0]}`)
+                    }
+                    console.log('ships:' + shipsArray.length)
+                    gameboard.addShip(shipsArray[0],getSquareData(topSquareElement).squareNumber,'top')
 
+                }
+                else if (shipsArray !== undefined && shipsArray.length > 0) {
+
+
+                gameboard.addShip(shipsArray[0],getSquareData(topSquareElement).squareNumber,'top')
+                shipsArray.shift()
+                console.log('ship added. ships to add: '+shipsArray.length )
+
+                }
+                
+                else {
+                    placingShips = false
+                    console.log('placingShips ' +placingShips)
+                }
+
+                
+            }
             gameboard.receiveAttack(getSquareData(topSquareElement).squareNumber,getSquareData(topSquareElement).squareSide)
             updateGrid()
 
@@ -56,9 +95,13 @@ container.appendChild(topBoard)
 container.appendChild(bottomBoard)
 
 
+let placingShips = true
 
 
-
+function newGame() {
+    let topPlayer = playerFactory('CPU')
+    let bottomPlayer = playerFactory('Human')
+}
 
 function updateGrid() {
 
