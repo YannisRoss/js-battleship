@@ -19,7 +19,8 @@ newGameButton.addEventListener('click', function () {
 
 container.appendChild(newGameButton)
 let gameboard = gameboardFactory()
-let shipsArray = undefined
+let topShipsArray = undefined
+let bottomShipsArray = undefined
 
 let topBoard = document.createElement('div')
 topBoard.setAttribute('id','top-board')
@@ -32,29 +33,29 @@ topBoard.setAttribute('id','top-board')
         topSquareElement.setAttribute('id',`top-square-${i}`)
         topSquareElement.addEventListener('click', function () {
             
-            if (placingShips) {
-                if (shipsArray == undefined) {
+            if (topPlacingShips) {
+                if (topShipsArray == undefined) {
                     let i = 5;
                     console.log('generating ships')
-                    shipsArray = []
+                    topShipsArray = []
                     while (i > 0) {
                         
-                        shipsArray.push(shipFactory(i))
+                        topShipsArray.push(shipFactory(i))
                         i--
-                        console.log(`ship pushed: ${shipsArray[0]}`)
+                        console.log(`ship pushed: ${topShipsArray[0]}`)
                     }
-                    console.log('ships:' + shipsArray.length)
-                    gameboard.addShip(shipsArray[0],getSquareData(topSquareElement).squareNumber,'top')
-                    shipsArray.shift()
+                    console.log('ships:' + topShipsArray.length)
+                    gameboard.addShip(topShipsArray[0],getSquareData(topSquareElement).squareNumber,'top')
+                    topShipsArray.shift()
 
                 }
                 else {
 
 
-                gameboard.addShip(shipsArray[0],getSquareData(topSquareElement).squareNumber,'top')
-                shipsArray.shift()
-                console.log('ship added. ships to add: '+shipsArray.length )
-                    if (shipsArray.length == 0) { placingShips = false }
+                gameboard.addShip(topShipsArray[0],getSquareData(topSquareElement).squareNumber,'top')
+                topShipsArray.shift()
+                console.log('ship added. ships to add: '+topShipsArray.length )
+                    if (topShipsArray.length == 0) { topPlacingShips = false }
                 }
                 
 
@@ -83,8 +84,39 @@ bottomBoard.setAttribute('id','bottom-board')
         bottomSquareElement.setAttribute('id',`bottom-square-${i}`)
         bottomSquareElement.addEventListener('click', function () {
 
+            if (bottomPlacingShips) {
+                if (bottomShipsArray == undefined) {
+                    let i = 5;
+                    console.log('generating ships')
+                    bottomShipsArray = []
+                    while (i > 0) {
+                        
+                        bottomShipsArray.push(shipFactory(i))
+                        i--
+                        console.log(`ship pushed: ${bottomShipsArray[0]}`)
+                    }
+                    console.log('ships:' + bottomShipsArray.length)
+                    gameboard.addShip(bottomShipsArray[0],getSquareData(bottomSquareElement).squareNumber,'bottom')
+                    bottomShipsArray.shift()
+
+                }
+                else {
+
+
+                gameboard.addShip(bottomShipsArray[0],getSquareData(bottomSquareElement).squareNumber,'bottom')
+                bottomShipsArray.shift()
+                console.log('ship added. ships to add: '+bottomShipsArray.length )
+                    if (bottomShipsArray.length == 0) { bottomPlacingShips = false }
+                }
+                
+
+
+                
+            }
+            else {
             gameboard.receiveAttack(getSquareData(bottomSquareElement).squareNumber,getSquareData(bottomSquareElement).squareSide)
             updateGrid()
+            }
 
 
         });
@@ -96,8 +128,8 @@ container.appendChild(topBoard)
 container.appendChild(bottomBoard)
 
 
-let placingShips = true
-
+let topPlacingShips = true
+let bottomPlacingShips = true
 
 function newGame() {
     let topPlayer = playerFactory('CPU')
@@ -111,6 +143,7 @@ function updateGrid() {
 
         if (gameboard.topsideSquaresArray[i].ship !== undefined && gameboard.topsideSquaresArray[i].isHit) {
             document.getElementById(`top-square-${i}`).classList.add('struck-ship')
+            console.log('grid ship struck')
 
         }
         else if ((gameboard.topsideSquaresArray[i].ship == undefined && gameboard.topsideSquaresArray[i].isHit)) {
@@ -122,11 +155,11 @@ function updateGrid() {
 
     i = 0;
     while (i<gameboard.bottomsideSquaresArray.length) {
-
+        console.log(gameboard.bottomsideSquaresArray[i].ship)
         if (gameboard.bottomsideSquaresArray[i].ship !== undefined && gameboard.bottomsideSquaresArray[i].isHit) {
             document.getElementById(`bottom-square-${i}`).classList.add('struck-ship')
-
-        }
+            console.log('grid ship struck')
+        }   
         else if ((gameboard.bottomsideSquaresArray[i].ship == undefined && gameboard.bottomsideSquaresArray[i].isHit)) {
             document.getElementById(`bottom-square-${i}`).classList.add('struck-empty-square')
 

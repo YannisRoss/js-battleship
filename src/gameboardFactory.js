@@ -40,9 +40,9 @@ let gameboardFactory = () => {
         else {
             let i = 0;
 
-            while (i<positions.size){
-                this.bottomsideSquaresArray[positions[i]].ship = ship
-                this.bottomsideSquaresArray[positions[i]].shipPart = i
+            while (i<ship.size){
+                bottomsideSquaresArray[position + i].ship = ship
+                bottomsideSquaresArray[position +i].shipPart = i
                 i++
             }
         }
