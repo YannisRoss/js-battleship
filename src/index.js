@@ -37,8 +37,9 @@ topBoard.setAttribute('id','top-board')
         topSquareElement.setAttribute('class','top-square')
         topSquareElement.setAttribute('id',`top-square-${i}`)
         topSquareElement.addEventListener('click', function () {
-            
             if (topPlacingShips) {
+                if (bottomTurn) {return}
+               
 
 
                 if (topShipsArray == undefined) {
@@ -59,7 +60,7 @@ topBoard.setAttribute('id','top-board')
                         gameboard.addShip(topShipsArray[0],getSquareData(topSquareElement).squareNumber,'top')
                         topShipsArray.shift()
                         console.log('ship added. ships to add: '+topShipsArray.length )
-
+                        changeTurn()
                     }
                     else {alert('ships cannot overlap')}
 
@@ -68,12 +69,13 @@ topBoard.setAttribute('id','top-board')
 
                 }
                 else {
-
+                    if (bottomTurn) {return}
+                    
                     if (gameboard.topsideSquaresArray[getSquareData(topSquareElement).squareNumber].ship == undefined){
                         gameboard.addShip(topShipsArray[0],getSquareData(topSquareElement).squareNumber,'top')
                         topShipsArray.shift()
                         console.log('ship added. ships to add: '+topShipsArray.length )
-
+                        changeTurn()
                     }
                     else {alert('ships cannot overlap')}
 
@@ -85,6 +87,8 @@ topBoard.setAttribute('id','top-board')
                 
             }
             else {
+                if (topTurn) {return}
+                changeTurn()
             gameboard.receiveAttack(getSquareData(topSquareElement).squareNumber,getSquareData(topSquareElement).squareSide)
             updateGrid()
             }
@@ -107,6 +111,7 @@ bottomBoard.setAttribute('id','bottom-board')
         bottomSquareElement.addEventListener('click', function () {
 
             if (bottomPlacingShips) {
+                if (topTurn) {return}
                 if (bottomShipsArray == undefined) {
                     let i = 5;
                     console.log('generating ships')
@@ -122,15 +127,19 @@ bottomBoard.setAttribute('id','bottom-board')
                     
                     gameboard.addShip(bottomShipsArray[0],getSquareData(bottomSquareElement).squareNumber,'bottom')
                     bottomShipsArray.shift()
+                    changeTurn()
+
 
                 }
                 else {
-
+                    if (topTurn) {return}
+                    
                     if (gameboard.bottomsideSquaresArray[getSquareData(bottomSquareElement).squareNumber].ship == undefined){
 
-                gameboard.addShip(bottomShipsArray[0],getSquareData(bottomSquareElement).squareNumber,'bottom')
-                bottomShipsArray.shift()
-                console.log('ship added. ships to add: '+bottomShipsArray.length )
+                        gameboard.addShip(bottomShipsArray[0],getSquareData(bottomSquareElement).squareNumber,'bottom')
+                        bottomShipsArray.shift()
+                        console.log('ship added. ships to add: '+bottomShipsArray.length )
+                        changeTurn()
                     }
                     else {alert('ships cannot overlap')}
 
@@ -143,6 +152,8 @@ bottomBoard.setAttribute('id','bottom-board')
                 
             }
             else {
+                if (bottomTurn) {return}
+                changeTurn()
             gameboard.receiveAttack(getSquareData(bottomSquareElement).squareNumber,getSquareData(bottomSquareElement).squareSide)
             updateGrid()
             }
@@ -160,15 +171,44 @@ boardsDiv.appendChild(bottomBoard)
 let topPlacingShips = true
 let bottomPlacingShips = true
 
+let topTurn = true
+let bottomTurn = false
 
 let moveAnnouncer = document.createElement('div')
     moveAnnouncer.setAttribute('id','move-announcer')
-    moveAnnouncer.innerHTML = `Place ships.`// Ships left to place: ${topShipsArray.length} and ${bottomShipsArray.length}`
+    moveAnnouncer.innerHTML = `Let's begin! Top player, place your first ship.`// Ships left to place: ${topShipsArray.length} and ${bottomShipsArray.length}`
     container.appendChild(moveAnnouncer)
 
 function newGame() {
     let topPlayer = playerFactory('CPU')
     let bottomPlayer = playerFactory('Human')
+}
+
+function changeTurn() {
+    topTurn = !topTurn
+    bottomTurn = !bottomTurn
+    console.log(`top playing: ${topTurn}`)
+
+    if (topPlacingShips || bottomPlacingShips) {
+
+        if (topTurn) {
+            moveAnnouncer.innerHTML = 'Top player placing ship'
+        }
+        else {
+            moveAnnouncer.innerHTML = 'Bottom player placing ship.'
+    
+        }
+    }
+    
+    if (!topPlacingShips && !bottomPlacingShips){
+        if (topTurn) {
+            moveAnnouncer.innerHTML = 'Top player, sink the enemy ships!'
+        }
+        else {
+            moveAnnouncer.innerHTML = 'Bottom player, sink the enemy ships!'
+    
+        }
+    }
 }
 
 function updateGrid() {
@@ -202,9 +242,7 @@ function updateGrid() {
         i++
     }
 
-    if (!topPlacingShips && !bottomPlacingShips){
-        moveAnnouncer.innerHTML = 'Sink enemy ships!'
-    }
+ 
 
 
 }
