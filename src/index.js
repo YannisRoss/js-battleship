@@ -22,6 +22,7 @@ let gameboard = gameboardFactory()
 let topShipsArray = undefined
 let bottomShipsArray = undefined
 
+let boardsDiv = document.createElement('div')
 
 let topBoard = document.createElement('div')
 topBoard.setAttribute('id','top-board')
@@ -127,13 +128,13 @@ bottomBoard.setAttribute('id','bottom-board')
                 gameboard.addShip(bottomShipsArray[0],getSquareData(bottomSquareElement).squareNumber,'bottom')
                 bottomShipsArray.shift()
                 console.log('ship added. ships to add: '+bottomShipsArray.length )
-            }
-            else {alert('ships cannot overlap')}
+                    }
+                    else {alert('ships cannot overlap')}
 
 
-                    if (bottomShipsArray.length == 0) { bottomPlacingShips = false }
-                }
-                
+                            if (bottomShipsArray.length == 0) { bottomPlacingShips = false }
+                        }
+                        
 
 
                 
@@ -159,7 +160,7 @@ let bottomPlacingShips = true
 
 let moveAnnouncer = document.createElement('div')
     moveAnnouncer.setAttribute('id','move-announcer')
-    moveAnnouncer.innerHTML = 'Place ships'
+    moveAnnouncer.innerHTML = `Place ships.`// Ships left to place: ${topShipsArray.length} and ${bottomShipsArray.length}`
     container.appendChild(moveAnnouncer)
 
 function newGame() {
@@ -196,6 +197,10 @@ function updateGrid() {
 
         }
         i++
+    }
+
+    if (!topPlacingShips && !bottomPlacingShips){
+        moveAnnouncer.innerHTML = 'Sink enemy ships!'
     }
 
 
