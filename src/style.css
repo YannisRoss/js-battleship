@@ -17,6 +17,16 @@ body {
     width: 100vw;
     height: 90vh;
     display: flex;
+
+}
+
+#new-game-btn {
+
+position: absolute;
+right: 0;
+}
+
+#boards-div{
     flex-direction: column;
 }
 h1 {

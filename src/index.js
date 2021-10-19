@@ -11,6 +11,7 @@ console.log(`source index loaded`)
 let container = document.getElementById('container')
 
 let newGameButton = document.createElement('button')
+newGameButton.setAttribute('id', 'new-game-btn')
 newGameButton.innerHTML = 'New Game'
 newGameButton.addEventListener('click', function () {
 
@@ -23,6 +24,8 @@ let topShipsArray = undefined
 let bottomShipsArray = undefined
 
 let boardsDiv = document.createElement('div')
+boardsDiv.setAttribute('id','boards-div')
+container.appendChild(boardsDiv)
 
 let topBoard = document.createElement('div')
 topBoard.setAttribute('id','top-board')
@@ -150,8 +153,8 @@ bottomBoard.setAttribute('id','bottom-board')
         i++
     }
 
-container.appendChild(topBoard)
-container.appendChild(bottomBoard)
+boardsDiv.appendChild(topBoard)
+boardsDiv.appendChild(bottomBoard)
 
 
 let topPlacingShips = true
