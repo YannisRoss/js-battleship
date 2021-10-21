@@ -10,15 +10,29 @@ console.log(`source index loaded`)
 
 let container = document.getElementById('container')
 
-let newGameButton = document.createElement('button')
-newGameButton.setAttribute('id', 'new-game-btn')
-newGameButton.innerHTML = 'New Game'
-newGameButton.addEventListener('click', function () {
+let newGameButtonsDiv = document.createElement('div')
+newGameButtonsDiv.setAttribute('id', 'new-game-btns-div')
+    let newCPUGameButton = document.createElement('button')
+    newCPUGameButton.setAttribute('class', 'new-game-btn')
+    newCPUGameButton.innerHTML = 'Play vs CPU'
+    newCPUGameButton.addEventListener('click', function () {
 
-    newGame()
-})
+        newGame('cpu')
+    })
+    let newLocalGameButton = document.createElement('button')
+    newLocalGameButton.setAttribute('class', 'new-game-btn')
+    newLocalGameButton.innerHTML = 'Play local'
+    newLocalGameButton.addEventListener('click', function () {
 
-container.appendChild(newGameButton)
+        newGame('local')
+    })
+
+    newGameButtonsDiv.appendChild(newCPUGameButton)
+    newGameButtonsDiv.appendChild(newLocalGameButton)
+
+container.appendChild(newGameButtonsDiv)
+
+
 let gameboard = gameboardFactory()
 let topShipsArray = undefined
 let bottomShipsArray = undefined
@@ -179,9 +193,17 @@ let moveAnnouncer = document.createElement('div')
     moveAnnouncer.innerHTML = `Let's begin! Top player, place your first ship.`// Ships left to place: ${topShipsArray.length} and ${bottomShipsArray.length}`
     container.appendChild(moveAnnouncer)
 
-function newGame() {
-    let topPlayer = playerFactory('CPU')
-    let bottomPlayer = playerFactory('Human')
+function newGame(mode) {
+    if (mode =='cpu') {
+        let topPlayer = playerFactory('CPU')
+        let bottomPlayer = playerFactory('Human')
+    }
+    else {
+        let topPlayer = playerFactory('TopPlayer')
+        let bottomPlayer = playerFactory('BottomPlayer')
+    }
+    
+
 }
 
 function changeTurn() {

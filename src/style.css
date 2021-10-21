@@ -20,10 +20,14 @@ body {
 
 }
 
-#new-game-btn {
+#new-game-btns-div {
+    position: absolute;
+    right: 0;
 
-position: absolute;
-right: 0;
+}
+.new-game-btn {
+    border-radius: 20%;
+
 }
 
 #boards-div{
